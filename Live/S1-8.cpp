@@ -1,0 +1,27 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+long long mod(long long a, long long b) {
+    while(a>0) a-=b;
+}
+
+int main() {
+	long long a,b,k,t;
+	cin>>a>>b>>k>>t;
+	if(a==b) {
+	    cout<<(t==1?0:2);
+	    return 0;
+	}
+	if(k==0) {
+	    cout<<max(a-b,b-a);
+	    return 0;
+	}
+	long long offset = max(a-b,b-a)%k;
+	long long count  = max(a-b,b-a)/k;
+	if(t==1) {
+        cout<<min(offset+count,count+1+k-offset);
+	} else {
+	    cout<<min(max(offset+count,count+1+k-offset),min(offset+count,count+1+k-offset)+2);
+    }
+}
+
